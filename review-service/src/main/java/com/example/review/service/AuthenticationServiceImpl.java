@@ -10,28 +10,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class AuthenticationServiceImpl implements AuthenticationService{
+public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Value("${jwt.secret-key}")
     private String secretKey;
 
     @Override
-    public Boolean isAuthenticated(UserDetails userDetails){
+    public Boolean isAuthenticated(UserDetails userDetails) {
         //TODO
         return true;
     }
 
     @Override
-    public String generateJwtToken(UserDetails userDetails){
+    public String generateJwtToken(UserDetails userDetails) {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
             .commaSeparatedStringToAuthorityList("ROLE_USER");
 
-        String token = Jwts
+        return Jwts
             .builder()
-            .setId("TOKEN_ID")
+            .setId(UUID.randomUUID().toString())
             .setSubject(userDetails.getUsername())
             .claim("authorities",
                 grantedAuthorities.stream()
@@ -41,8 +42,6 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             .setExpiration(new Date(System.currentTimeMillis() + 600000))
             .signWith(SignatureAlgorithm.HS512,
                 secretKey.getBytes()).compact();
-
-        return "Bearer " + token;
     }
 
 }

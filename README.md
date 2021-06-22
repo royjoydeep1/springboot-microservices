@@ -24,3 +24,24 @@
 * It provides configuration for API logging, security and documentation.
 * It provides exception handler for API
 * Common library is used by both `product-service` and `review-service`
+
+
+## Dockerize your microservices
+It is essential in microservice environment to containerize the build using Docker.
+
+Each microservice `product-service` and `review-service` has their own `Dockerfile` at the root of the project, which is used to build docker image.
+
+Docker can be installed on Mac using Brew:-
+```
+brew install --cask docker
+```
+
+To build a docker image for `product-service`, go to the project root location, where you have `Dockerfile` and run command:-
+```
+docker build -t product-service .
+```
+
+To run `product-service` application from docker image, run following command:-
+```
+docker run -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=dev" product-service:latest
+```

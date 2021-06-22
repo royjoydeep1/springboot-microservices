@@ -31,6 +31,8 @@ It is essential in microservice environment to containerize the build using Dock
 
 Each microservice `product-service` and `review-service` has their own `Dockerfile` at the root of the project, which is used to build docker image.
 
+### Docker
+
 Docker can be installed on Mac using Brew:-
 ```
 brew install --cask docker
@@ -44,4 +46,15 @@ docker build -t product-service .
 To run `product-service` application from docker image, run following command:-
 ```
 docker run -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=dev" product-service:latest
+```
+
+`docker` commands are used when you have to build a docker image and run that docker image for an individual microservice. You should use `docker-compose` commands if you want to build and run docker images for multiple microservices at once.
+
+### Docker-Compose
+Docker compose configuration file `docker-compose.yaml` is at the root folder of repo directory i.e. `springboot-microservices/docker-compose.yaml` which provides all the configuration required to build and run docker image of `product-service` and `review-service`
+
+Go to the repo root directory `springboot-microservices` and execute following command to build and run docker images for both the services at port `8081` and `8082` respectively
+
+```
+docker-compose up
 ```

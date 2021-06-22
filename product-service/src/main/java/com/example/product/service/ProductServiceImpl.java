@@ -5,10 +5,12 @@ import com.example.product.client.ReviewFeignClient;
 import com.example.product.domain.Product;
 import com.example.product.domain.Review;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductFeignClient productFeignClient;
@@ -17,7 +19,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(String productId) {
         Product product = productFeignClient.getProductById(productId);
-        Review review = reviewFeignClient.getReviewByProduct(productId);
+
+        Review review = null;
+        try {
+            review = reviewFeignClient.getReviewByProduct(productId);
+        }catch(Exception ex){
+            log.error("Error while fetching reviews for product", ex);
+        }
         product.setReview(review);
         return product;
     }

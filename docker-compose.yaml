@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   product-service:
-    image: product-service:latest
+    image: com.example/product-service:latest
     container_name: product-service
     build:
       context: ./product-service
@@ -16,7 +16,7 @@ services:
     ports:
       - 8081:8081
   review-service:
-    image: review-service:latest
+    image: com.example/review-service:latest
     container_name: review-service
     build:
       context: ./review-service

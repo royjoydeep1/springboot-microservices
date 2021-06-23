@@ -2,6 +2,7 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 ARG APP_NAME="review-service"
 ARG APP_VERSION="0.0.1"
+ARG JAR_FILE="/build/libs/${APP_NAME}-${APP_VERSION}.jar"
 
-COPY /build/libs/${APP_NAME}-${APP_VERSION}.jar /opt/app/${APP_NAME}.jar
-ENTRYPOINT ["java","-jar","/opt/app/review-service.jar"]
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar", "app.jar"]

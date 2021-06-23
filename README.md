@@ -29,32 +29,40 @@
 ## Dockerize your microservices
 It is essential in microservice environment to containerize the build using Docker.
 
-Each microservice `product-service` and `review-service` has their own `Dockerfile` at the root of the project, which is used to build docker image.
 
-### Docker
-
+### Docker Installation
 Docker can be installed on Mac using Brew:-
 ```
 brew install --cask docker
 ```
+You should be able to use Docker CLI commands such as `docker` and `docker-compose` after installation.
 
-To build a docker image for `product-service`, go to the project root location, where you have `Dockerfile` and run command:-
-```
-docker build -t product-service .
-```
+### Dockerfile
+Each microservice `product-service` and `review-service` have their own `Dockerfile` at the root of each project, which is used to build docker image.
 
-To run `product-service` application from docker image, run following command:-
-```
-docker run -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=dev" product-service:latest
-```
+1. To build a docker image for `product-service`, Goto the project's root location, where you have `Dockerfile` and run following command:-
+    ```
+    $springboot-microservices/product-service > build -t product-service .
+    ```
+
+2. To run `product-service` application from docker image, run following command:-
+    ```
+    $any_path > docker run -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=dev" product-service:latest
+    ```
 
 `docker` commands are used when you have to build a docker image and run that docker image for an individual microservice. You should use `docker-compose` commands if you want to build and run docker images for multiple microservices at once.
 
-### Docker-Compose
+### docker-compose.yaml
 Docker compose configuration file `docker-compose.yaml` is at the root folder of repo directory i.e. `springboot-microservices/docker-compose.yaml` which provides all the configuration required to build and run docker image of `product-service` and `review-service`
 
-Go to the repo root directory `springboot-microservices` and execute following command to build and run docker images for both the services at port `8081` and `8082` respectively
+Goto the repo root directory `springboot-microservices` and execute following command to build and run docker images for both the services at port `8081` and `8082` respectively
 
 ```
-docker-compose up
+$springboot-microservices > docker-compose up
+```
+
+You can execute following commands to bring all the services down:-
+
+```
+$springboot-microservices > docker-compose down
 ```

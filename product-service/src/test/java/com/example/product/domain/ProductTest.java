@@ -1,6 +1,6 @@
 package com.example.product.domain;
 
-public class ProductTestData {
+public class ProductTest {
 
     public static Product product() {
         return Product.builder()

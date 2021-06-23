@@ -1,6 +1,6 @@
 package com.example.product.controller;
 
-import com.example.product.domain.ProductTestData;
+import com.example.product.domain.ProductTest;
 import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -32,7 +31,7 @@ public class ProductControllerTest {
 
     @Test
     public void getProductById_whenValidRequest_returnsValidResponse() throws Exception {
-        when(productService.getProductById(anyString())).thenReturn(ProductTestData.product());
+        when(productService.getProductById(anyString())).thenReturn(ProductTest.product());
 
         mockMvc.perform(get("/product/BB5476"))
             .andDo(MockMvcResultHandlers.print())

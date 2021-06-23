@@ -2,7 +2,7 @@ package com.example.product.service;
 
 import com.example.product.client.ProductFeignClient;
 import com.example.product.domain.Product;
-import com.example.product.domain.ProductTestData;
+import com.example.product.domain.ProductTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,7 @@ public class ProductServiceTest {
 
     @Test
     public void getProductById_whenValidClientResponse_returnAllPosts() {
-        when(productFeignClient.getProductById(anyString())).thenReturn(ProductTestData.product());
+        when(productFeignClient.getProductById(anyString())).thenReturn(ProductTest.product());
 
         Product product = productService.getProductById("BB5476");
 

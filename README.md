@@ -70,11 +70,11 @@ $springboot-microservices > docker-compose down
 It is essential to automate the continuous integration and continuous deployment (CI/CD) in microservice environment. For this we have:-
 
 1. Added gradle plugins to build and run docker image using gradle tasks
-```
-plugins {
-    id 'com.palantir.docker' version '0.26.0'
-    id 'com.palantir.docker-run' version '0.26.0'
-}
-```
-
+    ```
+    plugins {
+        id 'com.palantir.docker' version '0.26.0'
+        id 'com.palantir.docker-run' version '0.26.0'
+    }
+    ```
+   You should be able to run `:docker` and `:dockerRun` gradle tasks for each microservice after adding the plugins.
 2. Added `Jenkinsfile` in each microservice to build Jenkins pipeline such as build, test, build and push docker image using the Gradle tasks.

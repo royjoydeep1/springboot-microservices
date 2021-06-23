@@ -1,4 +1,4 @@
-package com.example.common.config;
+package com.example.common.filter;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -39,7 +39,7 @@ public class ApiLoggingFilter implements Filter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApiLoggingFilter.class);
 
-	ApiLoggingFilter(String requestIdHeaderName, String requestIdMDCParamName) {
+	public ApiLoggingFilter(String requestIdHeaderName, String requestIdMDCParamName) {
 		this.requestIdHeaderName = requestIdHeaderName;
 		this.requestIdMDCParamName = requestIdMDCParamName;
 	}

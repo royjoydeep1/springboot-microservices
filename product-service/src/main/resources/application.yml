@@ -16,6 +16,8 @@ api:
     enable: true
     url-patterns: "/products/*"
     requestIdParamName: CORRELATION_ID
+  security:
+    enabled: false
 
 springdoc:
   swagger-ui:

@@ -1,5 +1,6 @@
 package com.example.common.config;
 
+import com.example.common.filter.ApiLoggingFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

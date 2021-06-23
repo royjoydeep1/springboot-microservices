@@ -1,10 +1,12 @@
 package com.example.product.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
 
 @Data
+@Builder
 public class Product {
     @JsonProperty("id")
     String id;

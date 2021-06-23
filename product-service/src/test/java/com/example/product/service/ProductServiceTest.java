@@ -1,9 +1,8 @@
-package com.example.common.service;
+package com.example.product.service;
 
 import com.example.product.client.ProductFeignClient;
 import com.example.product.domain.Product;
-import com.example.common.domain.ProductTestData;
-import com.example.product.service.ProductService;
+import com.example.product.domain.ProductTestData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,8 +27,10 @@ public class ProductServiceTest {
 
         Product product = productService.getProductById("BB5476");
 
-        assertThat(product.getId()).isEqualTo(1);
-        assertThat(product.getName()).isEqualTo(1);
+        assertThat(product.getId()).isEqualTo("BB5476");
+        assertThat(product.getName()).isEqualTo("Gazelle Shoes");
+        assertThat(product.getProductType()).isEqualTo("inline");
+        assertThat(product.getModelNumber()).isEqualTo("IAZ12");
     }
 
 }

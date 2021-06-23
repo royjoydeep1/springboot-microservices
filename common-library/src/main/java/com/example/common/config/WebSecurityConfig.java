@@ -1,6 +1,7 @@
 package com.example.common.config;
 
 import com.example.common.filter.JWTAuthorizationFilter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@ConditionalOnExpression("${api.security.enabled:true}")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override

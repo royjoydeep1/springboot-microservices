@@ -29,7 +29,6 @@
 ## Dockerize your microservices
 It is essential in microservice environment to containerize the build using Docker.
 
-
 ### Docker Installation
 Docker can be installed on Mac using Brew:-
 ```
@@ -38,7 +37,7 @@ brew install --cask docker
 You should be able to use Docker CLI commands such as `docker` and `docker-compose` after installation.
 
 ### Dockerfile
-Each microservice `product-service` and `review-service` have their own `Dockerfile` at the root of each project, which is used to build docker image.
+Added `Dockerfile` in each microservice to provide configuration to build and run docker image.
 
 1. To build a docker image for `product-service`, Goto the project's root location, where you have `Dockerfile` and run following command:-
     ```
@@ -66,3 +65,16 @@ You can execute following commands to bring all the services down:-
 ```
 $springboot-microservices > docker-compose down
 ```
+
+## CI/CD pipeline proposal
+It is essential to automate the continuous integration and continuous deployment (CI/CD) in microservice environment. For this we have:-
+
+1. Added gradle plugins to build and run docker image using gradle tasks
+```
+plugins {
+    id 'com.palantir.docker' version '0.26.0'
+    id 'com.palantir.docker-run' version '0.26.0'
+}
+```
+
+2. Added `Jenkinsfile` in each microservice to build Jenkins pipeline such as build, test, build and push docker image using the Gradle tasks.

@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-@ConditionalOnProperty(name="springdoc.swagger-ui.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true", matchIfMissing = true)
 public class OpenApiConfig {
 
     private static final String BEARER_FORMAT = "JWT";
     private static final String SCHEME = "Bearer";
-    private static final String SECURITY_SCHEME_NAME = "securityScheme";
+    private static final String SECURITY_SCHEME_NAME = "Security Scheme";
 
     @Value("${api.info.title: api.info.title}")
     private String title;
@@ -51,27 +51,27 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI api() {
         return new OpenAPI()
-                .schemaRequirement(SECURITY_SCHEME_NAME, getSecurityScheme())
-                .security(getSecurityRequirement())
-                .info(info());
+            .schemaRequirement(SECURITY_SCHEME_NAME, getSecurityScheme())
+            .security(getSecurityRequirement())
+            .info(info());
     }
 
     private Info info() {
         return new Info()
-                .title(title)
-                .description(description)
-                .version(version)
-                .contact(new Contact().name(contactName).email(contactEmail).url(contactUrl))
-                .license(new License().name(licenseName).url(licenseUrl));
+            .title(title)
+            .description(description)
+            .version(version)
+            .contact(new Contact().name(contactName).email(contactEmail).url(contactUrl))
+            .license(new License().name(licenseName).url(licenseUrl));
     }
 
-    private List<SecurityRequirement> getSecurityRequirement(){
+    private List<SecurityRequirement> getSecurityRequirement() {
         SecurityRequirement securityRequirement = new SecurityRequirement();
         securityRequirement.addList(SECURITY_SCHEME_NAME);
         return List.of(securityRequirement);
     }
 
-    private SecurityScheme getSecurityScheme(){
+    private SecurityScheme getSecurityScheme() {
         SecurityScheme securityScheme = new SecurityScheme();
         securityScheme.bearerFormat(BEARER_FORMAT);
         securityScheme.type(SecurityScheme.Type.HTTP);
@@ -79,5 +79,4 @@ public class OpenApiConfig {
         securityScheme.scheme(SCHEME);
         return securityScheme;
     }
-
 }

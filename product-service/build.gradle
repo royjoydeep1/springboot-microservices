@@ -44,8 +44,7 @@ test {
 
 String imageName = "${project.group}/${project.name}"
 docker {
-    //dependsOn build
-    dockerfile file('Dockerfile')
+    dockerfile project.file('Dockerfile')
     name imageName
     files bootJar.archiveFile.get()
     buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])

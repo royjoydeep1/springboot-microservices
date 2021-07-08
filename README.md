@@ -1,9 +1,13 @@
 # Spring Boot Microservices
 
 ## Overview
-* The application has been developed using microservice approach. 
-* Each microservice `product-service` and `review-service` can run independently.
-* You should be able to check out, build and run the app locally with Java and Gradle.
+* The application has been developed using microservice approach.
+* We use git monorepo where all microservices are the modules in a single respository.
+* Each microservice `product-service` and `review-service` can be built and run independently using Java & Gradle.
+* Each microservice can build, test, run, dockerize, deploy & run independently using Docker and Jenkins 
+
+## Resources 
+* [Deployment of Spring Boot Microservices using Docker and Jenkins](https://codingnconcepts.com/spring-boot/deployment-of-microservices-using-docker-and-jenkins/)
 
 ## Product-Service
 * You should be able to run product-service at port `8081`

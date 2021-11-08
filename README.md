@@ -4,7 +4,7 @@
 * The application has been developed using microservice approach.
 * We use git monorepo where all microservices are the modules in a single respository.
 * Each microservice `product-service` and `review-service` can be built and run independently using Java & Gradle.
-* Each microservice can build, test, run, dockerize, deploy & run independently using Docker and Jenkins 
+* Each microservice can build, test, run, dockerize, deploy & run independently using Docker, Jenkins, and Kubernetes
 
 ## Resources 
 * [Deployment of Spring Boot Microservices using Docker and Jenkins](https://codingnconcepts.com/spring-boot/deployment-of-microservices-using-docker-and-jenkins/)
@@ -70,6 +70,21 @@ You can execute following commands to bring all the services down:-
 $springboot-microservices > docker-compose down
 ```
 
+### Remote Docker Hub
+You can create a [DockerHub](https://www.docker.com/get-started) account to push local docker images to remote docker hub repository
+1. To login to remote DockerHub account:-
+    ```
+    $any_path > docker login
+    ```
+2. To tag local docker image to remote docker image:-
+    ```
+    $any_path > docker tag com.example/product-service:latest aklahoti/product-service/0.0.1
+    ```
+3. To push image to remote docker hub repository:-
+    ```
+    $any_path > docker image push aklahoti/product-service:0.0.1 
+    ```
+
 ## CI/CD pipeline proposal
 It is essential to automate the continuous integration and continuous deployment (CI/CD) in microservice environment. For this we have:-
 
@@ -82,3 +97,20 @@ It is essential to automate the continuous integration and continuous deployment
     ```
    You should be able to run `:docker` and `:dockerRun` gradle tasks for each microservice after adding the plugins.
 2. Added `Jenkinsfile` in each microservice to build Jenkins pipeline such as build, test, build and push docker image using the Gradle tasks.
+
+## Deploy Microservice to Kubernetes (K8S)
+### Install K8S
+K8S can be installed on Mac using Brew:-
+```
+brew install kubectl
+```
+You should be able to use K8S CLI commands `kubectl` after installation.
+
+### deployment.yml
+Added `deployment.yml` in each microservice to provide configuration for kubernetes load-balancer service, deployment, pod and container.
+
+To deploy docker image of `product-service` in K8S cluster, Goto the project's root location, where you have `application.yml` and run following command:-
+```
+$springboot-microservices/product-service > kubectl apply -f deployment.yml
+```
+This command will create 2 pods for `product-service` in Kubernetes cluster using RollingUpdate strategy. Load balancer service will be accessible at `localhost:9091` which will load balance the traffic to these 2 pods running at port `8081`
